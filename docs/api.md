@@ -35,25 +35,34 @@ Wrong email or password!
 
 Returns list of path metas. Response code 200.
 
-```json
+```
 [
   {
-    "duration_seconds": 9240,
-    "first_point_time": "Mon, 05 Nov 2018 15:46:13 GMT",
-    "id": 47,
-    "last_point_time": "Mon, 05 Nov 2018 18:20:13 GMT",
-    "name": null,
-    "owner_id": 1,
-    "point_count": 1054
+    "id": Integer,
+    "duration_seconds": Integer,
+
+    // Format: %a, %d %b %Y %H:%M:%S GMT
+    // Example: Fri, 28 Jun 2019 16:43:25 GMT
+    "first_point_time": String,
+    "last_point_time": String,
+
+    "name": NULL or String,
+    "owner_id": Integer,
+    "point_count": Integer
   },
-  ...{
-    "duration_seconds": 2177,
-    "first_point_time": "Fri, 28 Jun 2019 16:43:25 GMT",
-    "id": 50,
-    "last_point_time": "Fri, 28 Jun 2019 17:19:42 GMT",
-    "name": null,
-    "owner_id": 1,
-    "point_count": 226
+  ...
+  {
+    "id": Integer,
+    "duration_seconds": Integer,
+
+    // Format: %a, %d %b %Y %H:%M:%S GMT
+    // Example: Fri, 28 Jun 2019 16:43:25 GMT
+    "first_point_time": String,
+    "last_point_time": String,
+
+    "name": NULL or String,
+    "owner_id": Integer,
+    "point_count": Integer
   }
 ]
 ```
@@ -62,16 +71,20 @@ Returns list of path metas. Response code 200.
 
 Returns list of paths that are considered as live. Response code 200.
 
-```json
+```
 [
   {
-    "duration_seconds": 0,
-    "first_point_time": "Mon, 04 Nov 2019 17:16:56 GMT",
-    "id": 51,
-    "last_point_time": "Mon, 04 Nov 2019 17:16:56 GMT",
-    "name": null,
-    "owner_id": 1,
-    "point_count": 1
+    "id": Integer,
+    "duration_seconds": Integer,
+
+    // Format: %a, %d %b %Y %H:%M:%S GMT
+    // Example: Fri, 28 Jun 2019 16:43:25 GMT
+    "first_point_time": String,
+    "last_point_time": String,
+
+    "name": NULL or String,
+    "owner_id": Integer,
+    "point_count": Integer
   }
 ]
 ```
@@ -80,40 +93,50 @@ Returns list of paths that are considered as live. Response code 200.
 
 Returns full information of the path with given id.
 
-```json
+```
 {
   "meta": {
-    "duration_seconds": 8762,
-    "first_point_time": "Mon, 29 May 2017 07:42:23 GMT",
-    "id": 2,
-    "last_point_time": "Mon, 29 May 2017 10:08:25 GMT",
-    "name": null,
+    "id": Integer,
+    "duration_seconds": Integer,
+
+    // Format: %a, %d %b %Y %H:%M:%S GMT
+    // Example: Fri, 28 Jun 2019 16:43:25 GMT
+    "first_point_time": String,
+    "last_point_time": String,
+
+    "name": NULL or String,
     "owner": {
-      "display_name": "Majura",
-      "id": 1
+      "display_name": String,
+      "id": Integer
     },
-    "owner_id": 1,
-    "point_count": 425
+    "owner_id": Integer,
+    "point_count": Integer
   },
   "path": [
     {
-      "accuracy": 0.0,
-      "altitude": 0.0,
-      "guid": 3,
-      "latitude": 61.4986,
-      "longitude": 23.8184,
+      "accuracy": Float,
+      "altitude": Float,
+      "guid": Integer,
+      "latitude": Float,
+      "longitude": Float,
       "pathmeta_id": 2,
-      "speed": 0.0,
+      "speed": Float,
+
+      // Format: %a, %d %b %Y %H:%M:%S GMT
+      // Example: Fri, 28 Jun 2019 16:43:25 GMT
       "time_gmt": "Mon, 29 May 2017 07:42:23 GMT"
     },
     ...{
-      "accuracy": 0.0,
-      "altitude": 0.0,
-      "guid": 427,
-      "latitude": 60.3424,
-      "longitude": 24.3295,
-      "pathmeta_id": 2,
-      "speed": 0.0,
+      "accuracy": Float,
+      "altitude": Float,
+      "guid": Integer,
+      "latitude": Float,
+      "longitude": Float,
+      "pathmeta_id": Integer,
+      "speed": Float,
+
+      // Format: %a, %d %b %Y %H:%M:%S GMT
+      // Example: Fri, 28 Jun 2019 16:43:25 GMT
       "time_gmt": "Mon, 29 May 2017 10:08:25 GMT"
     }
   ]
@@ -124,16 +147,20 @@ Returns full information of the path with given id.
 
 Returns meta information for the path with given id.
 
-```json
+```
 {
-  "duration_seconds": 2177,
-  "first_point_time": "Fri, 28 Jun 2019 16:43:25 GMT",
-  "id": 50,
-  "last_point_time": "Fri, 28 Jun 2019 17:19:42 GMT",
-  "name": null,
-  "owner_id": 1,
+  "id": Integer,
+  "duration_seconds": Integer,
+
+  // Format: %a, %d %b %Y %H:%M:%S GMT
+  // Example: Fri, 28 Jun 2019 16:43:25 GMT
+  "first_point_time": String,
+  "last_point_time": String,
+
+  "name": NULL or String,
+  "owner_id": Integer,
   "owner_name": "Majura",
-  "point_count": 226
+  "point_count": Integer
 }
 ```
 
@@ -186,7 +213,7 @@ Response code 200 and updated user info.
 
 ```
 {
-  "api_key": String,
+  "api_key": NULL or String,
   "display_name": String,
   "email": String,
   "id": Integer
@@ -209,7 +236,7 @@ Returns current user information with response code 200, or 404 if not found.
 
 ```
 {
-  "api_key": String,
+  "api_key": NULL or String,
   "display_name": String,
   "email": String,
   "id": Integer
