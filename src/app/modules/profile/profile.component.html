@@ -1,0 +1,31 @@
+<div class="profile container">
+  <h1>Profile</h1>
+  <div *ngIf="!!user">
+    <div class="row">
+      <div class="col">ID:</div>
+      <div class="col">{{ user.id }}</div>
+    </div>
+    <div class="row">
+      <div class="col">Name:</div>
+      <div class="col">{{ user.display_name }}</div>
+    </div>
+    <div class="row">
+      <div class="col">Email:</div>
+      <div class="col">{{ user.email }}</div>
+    </div>
+    <div class="row">
+      <div class="col">Api key:</div>
+      <div class="col">{{ user.api_key }}</div>
+    </div>
+    <div class="row">
+      <div class="col">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a routerLink="/profile/edit" routerLinkActive="active">
+          <button class="btn btn-primary">Edit profile</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

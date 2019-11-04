@@ -1,0 +1,160 @@
+<div class="path-nav">
+  <a class="path-nav-link" [routerLink]="['/explore/list']">
+    {{ 'BACK_TO_LIST' | translate }}
+  </a>
+  <a class="path-nav-link" [routerLink]="['/explore/path', path_id_previous]">
+    {{ 'PREVIOUS_PATH' | translate }}
+  </a>
+  <a class="path-nav-link" [routerLink]="['/explore/path', path_id_next]">
+    {{ 'NEXT_PATH' | translate }}
+  </a>
+</div>
+
+<div *ngIf="path">
+  <!-- Live Controls -->
+  <div *ngIf="isLive" class="live-controls">
+    <div class="row" style="display: flex">
+      <div class="col-12">
+        <span>{{ 'LIVE' | translate }}</span>
+        <span class="record-icon animate-flicker">
+          🔴
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label>
+          {{ 'JUMP_TO_LATEST_POINT_AUTOMATICALLY' | translate }}
+          <input type="checkbox" [(ngModel)]="jumpToLatest" />
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- End of Live Controls -->
+
+  <!-- Information for the selected point. -->
+  <div *ngIf="!!selectedPoint">
+    <div class="row">
+      <div class="col-12">
+        <h1>
+          {{ 'HEADER_POINT_INFO' | translate: selectedPointIndex }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'POINT_INFO_LATITUDE' | translate }}
+      </div>
+      <div class="col-6">{{ selectedPoint.latitude }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'POINT_INFO_LONGITUDE' | translate }}
+      </div>
+      <div class="col-6">{{ selectedPoint.longitude }}</div>
+    </div>
+    <div class="row" *ngIf="pointHasField('accuracy')">
+      <div class="col-6">
+        {{ 'POINT_INFO_ACCURACY' | translate }}
+      </div>
+      <div class="col-6">{{ selectedPoint.accuracy | decimals: 2 }} m</div>
+    </div>
+    <div class="row" *ngIf="pointHasField('altitude')">
+      <div class="col-6">
+        {{ 'POINT_INFO_ALTITUDE' | translate }}
+      </div>
+      <div class="col-6">{{ selectedPoint.altitude | decimals: 2 }} m</div>
+    </div>
+    <div class="row" *ngIf="pointHasField('speed')">
+      <div class="col-6">{{ 'POINT_INFO_SPEED' | translate }}</div>
+      <div class="col-6">
+        {{ selectedPoint.speed | smartSpeed }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'POINT_INFO_TIMESTAMP' | translate }}
+      </div>
+      <div class="col-6">
+        {{ selectedPoint.time_gmt | date: 'yyyy.MM.dd hh:mm' }}
+      </div>
+    </div>
+  </div>
+  <!-- End of information for the selected point. -->
+
+  <!-- Point selector. -->
+  <div class="row">
+    <div class="col-12">
+      <app-path-point-selector
+        *ngIf="path && path.points && !!path.points.length"
+        [(currentValue)]="selectedPointIndex"
+        [maxValue]="lastPointIndex"
+      ></app-path-point-selector>
+    </div>
+  </div>
+  <!-- End of point selector. -->
+
+  <!-- Path information. -->
+  <div *ngIf="!!path.meta">
+    <div class="row">
+      <div class="col">
+        <h1>
+          {{ 'HEADER_PATH_INFORMATION' | translate }}
+        </h1>
+      </div>
+    </div>
+    <div class="row" *ngIf="!!owner">
+      <div class="col-6">{{ 'PATH_INFO_OWNER' | translate }}</div>
+      <div class="col-6">{{ owner.display_name }}</div>
+    </div>
+    <div class="row" *ngIf="!!path.meta.name">
+      <div class="col-6">{{ 'PATH_INFO_NAME' | translate }}</div>
+      <div class="col-6">{{ path.meta.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">{{ 'PATH_INFO_STARTED' | translate }}</div>
+      <div class="col-6">
+        {{ path.meta.firstPointTime | date: 'yyyy.MM.dd hh:mm' }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">{{ 'PATH_INFO_ENDED' | translate }}</div>
+      <div class="col-6">
+        {{ path.meta.lastPointTime | date: 'yyyy.MM.dd hh:mm' }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'PATH_INFO_POINTS_RECORDED' | translate }}
+      </div>
+      <div class="col-6">{{ path.meta.pointCount }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'PATH_INFO_DURATION' | translate }}
+      </div>
+      <div class="col-6">
+        {{ path.meta.durationSeconds | smartDuration }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'PATH_INFO_SPEED_AVERAGE' | translate }}
+      </div>
+      <div class="col-6">{{ stats.averageSpeed | smartSpeed }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'PATH_INFO_SPEED_MAX' | translate }}
+      </div>
+      <div class="col-6">{{ stats.highestSpeed | smartSpeed }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ 'PATH_INFO_SPEED_MIN' | translate }}
+      </div>
+      <div class="col-6">{{ stats.lowestSpeed | smartSpeed }}</div>
+    </div>
+  </div>
+  <!-- End of path information. -->
+</div>

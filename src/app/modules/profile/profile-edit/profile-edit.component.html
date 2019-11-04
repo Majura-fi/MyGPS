@@ -1,0 +1,140 @@
+<div class="profile container">
+  <h1>Profile</h1>
+  <div *ngIf="!!editedUser">
+    <form action="">
+      <div class="form-group">
+        <label for="display_name">Name:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="display_name"
+          id="display_name"
+          minlength="4"
+          maxlength="20"
+          autocomplete="off"
+          [(ngModel)]="editedUser.new_display_name"
+          (keyup)="checkName()"
+        />
+      </div>
+
+      <div *ngIf="!name.available" class="form-group">
+        <strong>The name has been already taken!</strong>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          class="form-control"
+          type="email"
+          name="email"
+          id="email"
+          value="{{ editedUser.email }}"
+          [(ngModel)]="editedUser.new_email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="api_key">Api Key:</label>
+        <input
+          class="form-control"
+          type="text"
+          name="api_key"
+          id="api_key"
+          readonly
+          placeholder="&lt; No api key - access disabled &gt;"
+          [(ngModel)]="editedUser.new_api_key"
+        />
+        <div class="row">
+          <div class="col">
+            <input
+              class="btn-inline btn-outline-primary form-control"
+              type="button"
+              value="Generate"
+              (click)="generateApiKey()"
+            />
+          </div>
+          <div class="col">
+            <input
+              class="btn btn-outline-danger form-control"
+              type="button"
+              value="Remove"
+              (click)="removeApiKey()"
+            />
+          </div>
+        </div>
+        <small class="form-text text-muted">
+          The api key will allow you to use these services to store locations.
+          <strong><em>Keep it secret!</em></strong> If shared, others can add
+          points to your profile, messing up everything!
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Current Password:</label>
+        <input
+          class="form-control"
+          attr.type="{{ password.display ? 'text' : 'password' }}"
+          name="current_password"
+          id="current_password"
+          [(ngModel)]="password.current"
+        />
+
+        <small id="api-key-help" class="form-text text-muted">
+          If you wish to change your password, fill these fields. Otherwise
+          leave it blank.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Show password:
+          <input
+            type="checkbox"
+            id="display-password"
+            name="display-password"
+            [(ngModel)]="password.display"
+        /></label>
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password:</label>
+        <input
+          class="form-control"
+          attr.type="{{ password.display ? 'text' : 'password' }}"
+          name="password1"
+          id="password1"
+          autocomplete="new-password"
+          [(ngModel)]="password.new1"
+        />
+        <div *ngIf="!password.display">
+          <label for="password">Repeat Password:</label>
+          <input
+            class="form-control"
+            type="password"
+            name="password2"
+            id="password2"
+            autocomplete="new-password"
+            [(ngModel)]="password.new2"
+          />
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="!password.isValid()">
+        Passwords do not match!
+      </div>
+
+      <input
+        (click)="save()"
+        class="btn btn-outline-success"
+        type="button"
+        value="Save"
+      />
+      <input
+        (click)="cancel()"
+        class="btn btn-outline-danger"
+        type="button"
+        value="Cancel"
+      />
+    </form>
+  </div>
+</div>

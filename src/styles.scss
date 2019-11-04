@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-image: url('/assets/images/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.gps-header + router-outlet + * {
+  height: calc(100% - 80px);
+  position: absolute;
+  width: 100%;
+  top: 80px;
+}
+
+.is-live {
+  font-weight: bold;
+  color: red;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@include keyframes(flickerAnimation) {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-flicker {
+  -webkit-animation: flickerAnimation 5s infinite;
+  -moz-animation: flickerAnimation 5s infinite;
+  -o-animation: flickerAnimation 5s infinite;
+  animation: flickerAnimation 5s infinite;
+}

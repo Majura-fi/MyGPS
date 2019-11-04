@@ -1,0 +1,42 @@
+<div class="content">
+  <form id="sign-in">
+    <legend>Sign In</legend>
+
+    <input
+      type="email"
+      name="user-email"
+      [(ngModel)]="loginInfo.email"
+      id="user-email"
+      placeholder="Email Address"
+      spellcheck="false"
+    />
+
+    <input
+      attr.type="{{ displayPassword ? 'text' : 'password' }}"
+      name="user-password"
+      placeholder="Password"
+      [(ngModel)]="loginInfo.password"
+      id="user-password"
+      autocomplete="off"
+    />
+
+    <span class="hide-show" (click)="togglePasswordDisplay($event)">
+      {{ displayPassword ? 'Hide Password' : 'Show Password' }}
+    </span>
+
+    <span *ngIf="error" id="login-error">{{ error }}</span>
+
+    <input
+      type="submit"
+      (click)="attemptToLogin()"
+      name="commit"
+      id="submit"
+      value="Sign In"
+    />
+    
+  Don't have an account? <a href="/register">Create one</a>
+  </form>
+
+  <p class="register">
+  </p>
+</div>

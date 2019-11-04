@@ -1,0 +1,34 @@
+<div [ngClass]="{ sidebarHidden: !sidePanelVisible }">
+  <div class="side-panel-container">
+    <!-- Sidepanel Start -->
+    <div id="gps-sidebar" class="side-panel-content">
+      <router-outlet (activate)="onRouterActivate($event)"></router-outlet>
+    </div>
+    <!-- Sidepanel End -->
+    <!-- Sidebar toggle start -->
+    <button class="toggle-side-panel-button" (click)="toggleSidePanel()">
+      &lt;
+    </button>
+    <!-- Sidebar toggle end -->
+  </div>
+
+  <div id="gps-map">
+    <app-map></app-map>
+    <button
+      id="gps-map-toggle-sidebar"
+      *ngIf="!sidePanelVisible"
+      (click)="toggleSidePanel()"
+    >
+      &gt;
+    </button>
+
+    <!-- Point selector. -->
+    <app-path-point-selector
+      class="map-point-selector"
+      *ngIf="currentPath && currentPath.points"
+      [(currentValue)]="currentPointIndex"
+      [maxValue]="lastPointIndex"
+    ></app-path-point-selector>
+    <!-- End of point selector. -->
+  </div>
+</div>

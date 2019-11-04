@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img
+      class="header-logo"
+      src="assets/images/logo-day.png"
+      alt="{{ 'TITLE' | translate }}"
+    />
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#top-navigation"
+    aria-controls="top-navigation"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class=" collapse navbar-collapse bg-light" id="top-navigation">
+  
+      <ul style="float:right">
+      <li>
+        <img
+          class="lang-button"
+          (click)="setLanguage('en')"
+          src="assets/images/en.png"
+          alt="EN"
+        />
+        <img
+          class="lang-button"
+          (click)="setLanguage('fi')"
+          src="assets/images/fi.png"
+          alt="FI"
+        />
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          {{ 'NAV_HOME' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/explore/list" routerLinkActive="active">
+          {{ 'NAV_EXPLORE' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profile" routerLinkActive="active">
+          {{ 'NAV_PROFILE' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active">
+          {{ 'NAV_ABOUT' | translate }}
+        </a>
+      </li>
+      <li *ngIf="!isLoggedIn()">
+        <a routerLink="/login" routerLinkActive="active">
+          {{ 'NAV_LOGIN' | translate }}</a
+        >
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a routerLink="/logout" routerLinkActive="active" (click)="logout()">
+          {{ 'NAV_LOGOUT' | translate }}
+        </a>
+      </li>
+      </ul>
+  </div>
+</nav>

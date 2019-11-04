@@ -1,0 +1,29 @@
+<h1>Point #{{ index }} Information</h1>
+<div *ngIf="!!point">
+  <div class="row">
+    <div class="col-6">Latitude</div>
+    <div class="col-6">{{ point.latitude }}</div>
+  </div>
+  <div class="row">
+    <div class="col-6">Longitude</div>
+    <div class="col-6">{{ point.longitude }}</div>
+  </div>
+  <div class="row" *ngIf="pointHasField('accuracy')">
+    <div class="col-6">Accuracy</div>
+    <div class="col-6">{{ point.accuracy | decimals: 2 }} m</div>
+  </div>
+  <div class="row" *ngIf="pointHasField('altitude')">
+    <div class="col-6">Altitude</div>
+    <div class="col-6">{{ point.altitude | decimals: 2 }} m</div>
+  </div>
+  <div class="row" *ngIf="pointHasField('speed')">
+    <div class="col-6">Speed</div>
+    <div class="col-6">{{ point.speed | smartSpeed }}</div>
+  </div>
+  <div class="row">
+    <div class="col-6">Timestamp</div>
+    <div class="col-6">
+      {{ point.time_gmt | date: 'yyyy.MM.dd hh:mm' }}
+    </div>
+  </div>
+</div>

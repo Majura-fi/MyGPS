@@ -1,0 +1,58 @@
+#gps-content {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 80px);
+  overflow: hidden;
+}
+
+#gps-sidebar {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+#gps-map {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.record-icon {
+  position: relative;
+  top: -2px;
+}
+#map-toggle-side-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#gps-map {
+  left: 0;
+}
+.map-point-selector {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.live-controls {
+  border: solid #ff8080;
+  background-color: #ffd9d9;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+
+.path-nav-link {
+  display: inline-block;
+  width: calc(100% / 3);
+  text-align: center;
+}

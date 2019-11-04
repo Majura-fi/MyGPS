@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-3 col-sm-2">
+    <button
+      class="button previous-point"
+      (mouseleave)="releaseMouse()"
+      (mousedown)="holdMouse(-1)"
+      (mouseup)="releaseMouse()"
+    >
+      &lt;
+    </button>
+  </div>
+  <div class="col-6 col-sm-8">
+    <input
+      type="range"
+      min="0"
+      max="{{ maxValue }}"
+      class="slider"
+      (change)="updateIndexChanged()"
+      (input)="updateIndexChanged()"
+      [(ngModel)]="currentValue"
+    />
+  </div>
+  <div class="col-3 col-sm-2">
+    <button
+      class="button next-point"
+      (mouseleave)="releaseMouse()"
+      (mousedown)="holdMouse(1)"
+      (mouseup)="releaseMouse()"
+    >
+      &gt;
+    </button>
+  </div>
+</div>

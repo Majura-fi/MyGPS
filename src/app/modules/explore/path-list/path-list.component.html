@@ -1,0 +1,11 @@
+<h1>Paths</h1>
+<ul class="path-list">
+  <li class="path-item" *ngFor="let meta of metas">
+    <a [routerLink]="['/explore/path', meta.id]" (click)="_onPathSelected(meta)">
+      {{ meta.name || meta.firstPointTime | date: 'yyyy.MM.dd HH:mm' }}
+      <span *ngIf="isLive(meta)" class="is-live animate-flicker">
+        Live!
+      </span>
+    </a>
+  </li>
+</ul>
